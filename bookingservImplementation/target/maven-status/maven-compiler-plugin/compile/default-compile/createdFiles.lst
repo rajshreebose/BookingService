@@ -1,0 +1,6 @@
+com\paypal\bfs\test\bookingserv\BookingServApplication.class
+com\paypal\bfs\test\bookingserv\datamodel\Booking.class
+com\paypal\bfs\test\bookingserv\services\BookingResourceServiceImpl.class
+com\paypal\bfs\test\bookingserv\impl\BookingResourceImpl.class
+com\paypal\bfs\test\bookingserv\repositories\BookingRepository.class
+com\paypal\bfs\test\bookingserv\services\BookingResourceService.class
