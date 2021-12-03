@@ -1,8 +1,6 @@
 
 package com.paypal.bfs.test.bookingserv.api.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -13,11 +11,10 @@ public class Booking {
     private String firstName;
     @NotNull
     private String lastName;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @NotNull
     private LocalDate dateOfBirth;
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @NotNull
     private LocalDateTime checkinDatetime;
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime checkoutDatetime;
     @NotNull
     private Double totalPrice;
