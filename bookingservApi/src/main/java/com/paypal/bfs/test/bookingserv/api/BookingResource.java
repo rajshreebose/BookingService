@@ -24,4 +24,13 @@ public interface BookingResource {
     // ----------------------------------------------------------
     @RequestMapping(value = "/v1/bfs/bookings", method = RequestMethod.GET)
     ResponseEntity<List<Booking>> getAll();
+
+    @RequestMapping(value = "/v1/bfs/booking/{id}", method = RequestMethod.DELETE)
+    ResponseEntity<String> deleteBooking(@PathVariable(value = "id") int id);
+
+    @RequestMapping(value = "/v1/bfs/booking", method = RequestMethod.PUT)
+    ResponseEntity<Booking> updateBooking(@RequestBody Booking booking);
+
+
+
 }

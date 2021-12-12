@@ -23,7 +23,7 @@ public class BookingResourceServiceImpl implements BookingResourceService {
     @Override
     public Booking create(@Valid Booking booking) {
 
-        com.paypal.bfs.test.bookingserv.datamodel.Booking bookingModel  =
+        com.paypal.bfs.test.bookingserv.datamodel.Booking bookingModel =
                 modelMapper.map(booking, com.paypal.bfs.test.bookingserv.datamodel.Booking.class);
         bookingModel = this.bookingRepository.save(bookingModel);
         return modelMapper.map(bookingModel, Booking.class);
@@ -43,6 +43,34 @@ public class BookingResourceServiceImpl implements BookingResourceService {
     public Booking get(Integer bookingId) {
         Optional<com.paypal.bfs.test.bookingserv.datamodel.Booking> booking =
                 bookingRepository.findById(bookingId);
-        return modelMapper.map(booking, Booking.class);
+        if (booking.isPresent()) {
+            return modelMapper.map(booking.get(), Booking.class);
+        }
+        return null;
+    }
+
+    @Override
+    public Booking update(Booking booking) {
+        Optional<com.paypal.bfs.test.bookingserv.datamodel.Booking> b = bookingRepository.findById(booking.getId());
+        com.paypal.bfs.test.bookingserv.datamodel.Booking bookingModel =
+                modelMapper.map(booking, com.paypal.bfs.test.bookingserv.datamodel.Booking.class);
+        com.paypal.bfs.test.bookingserv.datamodel.Booking saved= null;
+        if (b.isPresent()){
+            saved = b.get();
+            saved.setId(bookingModel.getId());
+            saved.setFirstName(bookingModel.getFirstName());
+            saved.setLastName(bookingModel.getLastName());
+            bookingModel = bookingRepository.save(saved);
+            return modelMapper.map(bookingModel, Booking.class);
+        }
+        return null;
+    }
+
+    @Override
+    public void delete(int bookingId) {
+        Optional<com.paypal.bfs.test.bookingserv.datamodel.Booking> b = bookingRepository.findById(bookingId);
+        if (b.isPresent()){
+            bookingRepository.delete(b.get());
+        }
     }
 }

@@ -6,6 +6,12 @@ import java.util.List;
 
 public interface BookingResourceService {
     Booking create(Booking booking);
+
     List<Booking> getAll();
+
     Booking get(Integer bookingId);
+
+    Booking update(Booking booking);
+
+    void delete(int bookingId);
 }
